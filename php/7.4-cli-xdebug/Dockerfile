@@ -15,7 +15,7 @@ ENV PHPIZE_DEPS \
 
 RUN apk add --no-cache --virtual .persistent-deps postgresql-dev
 RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS
-RUN docker-php-ext-configure pdo_pgsql --with-pgsql
+RUN docker-php-ext-configure pdo_pgsql
 RUN docker-php-ext-install -j$(nproc) pdo_pgsql pdo_mysql pcntl opcache
 RUN pecl -d preferred_state=beta install xdebug
 RUN apk del .build-deps && rm -rf /tmp/*
